@@ -1,18 +1,19 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
-import AdoptedPetContext from "./adoptedPetContext";
-import Modal from "./modal"
-import ErrorBoundary from "./errorBoundary";
+import AdoptedPetContext from "./AdoptedPetContext";
+import Modal from "./Modal";
+import ErrorBoundary from "./ErrorBoundary";
 import fetchPet from "./fetchPet";
-import Carousel from "./carousel";
+import Carousel from "./Carousel";
 
 const Details = () => {
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const results = useQuery(["details", id], fetchPet);
-  const [_,setAdoptedPet] = useContext(AdoptedPetContext);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setAdoptedPet] = useContext(AdoptedPetContext);
 
   if (results.isLoading) {
     return (
@@ -26,7 +27,7 @@ const Details = () => {
 
   return (
     <div className="details">
-      <Carousel images = {pet.images} />
+      <Carousel images={pet.images} />
       <div>
         <h1>{pet.name}</h1>
         <h2>{`${pet.animal} — ${pet.breed} — ${pet.city}, ${pet.state}`}</h2>
@@ -37,10 +38,14 @@ const Details = () => {
             <div>
               <h1>Would you like to adopt {pet.name}?</h1>
               <div className="buttons">
-                <button onClick={() => {
-                  setAdoptedPet(pet);
-                  navigate("/");
-                }}>Yes</button>
+                <button
+                  onClick={() => {
+                    setAdoptedPet(pet);
+                    navigate("/");
+                  }}
+                >
+                  Yes
+                </button>
                 <button onClick={() => setShowModal(false)}>No</button>
               </div>
             </div>

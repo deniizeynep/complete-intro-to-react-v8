@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Results from "./Results";
-import AdoptedPetContext from "./adoptedPetContext";
+import AdoptedPetContext from "./AdoptedPetContext";
 import useBreedList from "./useBreedList";
 import fetchSearch from "./fetchSearch";
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
@@ -37,22 +37,21 @@ const SearchParams = () => {
           <div className="pet image-container">
             <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
           </div>
-        ): null}
+        ) : null}
         <label htmlFor="location">
           Location
-          <input
-            name ="location"
-            id="location"
-            placeholder="Location"
-          />
+          <input type="text" id="location" name="location" placeholder="Location" />
         </label>
 
         <label htmlFor="animal">
           Animal
           <select
             id="animal"
-            value={animal}
+            name="animal"
             onChange={(e) => {
+              setAnimal(e.target.value);
+            }}
+            onBlur={(e) => {
               setAnimal(e.target.value);
             }}
           >
