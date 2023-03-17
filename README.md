@@ -1,6 +1,8 @@
-Adopt Me!
+#Complete Intro to React, v8 and Intermediate React, v5
 
-Frontend Masters Course Link
+_Adopt Me!_
+
+**Frontend Masters Course Link**
 
 Complete Intro to React, v8:
 https://frontendmasters.com/courses/complete-react-v8/
